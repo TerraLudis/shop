@@ -1,0 +1,16 @@
+name = Shop TL
+description = Terra Ludis shop profile
+version = 7.x-1.0
+core = 7.x
+
+dependencies[] = adminimal_admin_menu
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = file
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
