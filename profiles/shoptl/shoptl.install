@@ -13,7 +13,7 @@
  */
 function shoptl_install() {
   // Enable some standard blocks.
-  $default_theme = variable_get('theme_default', 'bartik');
+  $default_theme = 'shoptl_theme';
   $admin_theme = 'adminimal';
   $blocks = array(
     array(
@@ -23,46 +23,6 @@ function shoptl_install() {
       'status' => 1,
       'weight' => 0,
       'region' => 'content',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'user',
-      'delta' => 'login',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'navigation',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'powered-by',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 10,
-      'region' => 'footer',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'help',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'help',
       'pages' => '',
       'cache' => -1,
     ),
@@ -110,23 +70,13 @@ function shoptl_install() {
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
 
-  // Create a Home link in the main menu.
-  $item = array(
-    'link_title' => st('Home'),
-    'link_path' => '<front>',
-    'menu_name' => 'main-menu',
-  );
-  menu_link_save($item);
-
-  // Update the menu router information.
-  menu_rebuild();
-
-  // Enable the admin theme.
+  // Enable the admin & default themes.
   db_update('system')
     ->fields(array('status' => 1))
     ->condition('type', 'theme')
-    ->condition('name', $admin_theme)
+    ->condition('name', [$admin_theme, $default_theme])
     ->execute();
+  variable_set('default_theme', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
 }
