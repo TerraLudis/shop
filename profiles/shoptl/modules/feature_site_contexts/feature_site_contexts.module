@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Code for the Feature Site Contexts feature.
+ */
+
+include_once 'feature_site_contexts.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function feature_site_contexts_block_info() {
+  return [
+    'footer_msg' => [
+      'info' => 'Footer message',
+      'cache' => CACHE_PERMANENT,
+    ],
+    'ssl_picture' => [
+      'info' => 'SSL Picture',
+      'cache' => CACHE_PERMANENT,
+    ],
+  ];
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function feature_site_contexts_block_view($delta = '') {
+  $block = ['title' => '', 'content' => []];
+
+  switch ($delta) {
+    case 'ssl_picture':
+      $block['content'] = [
+        '#markup' => '<script language="JavaScript" type="text/javascript">TrustLogo("https://shop.terraludis.org/profiles/shoptl/themes/shoptl_theme/images/comodo_secure.png", "CL1", "none");</script>',
+        '#attached' => [
+          'js' => [
+            drupal_get_path('module', 'feature_site_contexts') . '/js/ssl_logo.js',
+          ],
+        ]
+      ];
+      break;
+
+    case 'footer_msg':
+      $block['content'] = [
+        '#markup' => "Ce site est géré par l'association loi 1901 <a href=\"http://terraludis.org\">Terra Ludis</a>.",
+      ];
+      break;
+  }
+
+  return $block;
+}
