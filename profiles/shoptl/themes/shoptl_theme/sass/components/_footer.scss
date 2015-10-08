@@ -1,0 +1,28 @@
+
+.l-footer {
+  @include clearfix;
+  background: $bg-footer;
+  border: 1px solid $border-footer;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  color: $text-footer;
+  padding: 20px;
+
+  a {
+    @include link-colors($menu-link, $menu-link-hover, $menu-link-hover, $menu-link, $menu-link-hover);
+  }
+}
+
+#block-feature-site-contexts-footer-msg {
+  float: left;
+  line-height: 30px;
+}
+
+#block-feature-site-contexts-ssl-picture {
+  float: right;
+  line-height: 30px;
+
+  a {
+    display: block;
+  }
+}

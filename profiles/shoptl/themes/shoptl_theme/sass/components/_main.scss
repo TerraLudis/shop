@@ -1,0 +1,14 @@
+
+.l-main {
+  @include clearfix;
+  background: $bg-main;
+  border: 1px solid $border-footer;
+  border-top: none;
+  border-radius: 5px 5px 0 0;
+  color: $text;
+  padding: 20px;
+
+  a {
+    @include link-colors($link, $link-hover, $link-hover, $link, $link-hover);
+  }
+}

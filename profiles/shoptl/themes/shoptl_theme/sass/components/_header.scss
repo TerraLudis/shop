@@ -1,0 +1,20 @@
+
+.l-header {}
+
+.l-branding {
+  text-align: center;
+  margin: 20px auto 0;
+
+  h1 {
+    @extend %element-invisible;
+  }
+}
+
+.region-header {
+  @include clearfix;
+  @extend %wrapped;
+}
+
+.region-navigation-decorator {
+  margin-bottom: 15px;
+}

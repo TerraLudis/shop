@@ -1,0 +1,37 @@
+
+.region-navigation-decorator {
+  background: $bg-footer;
+  border: 1px solid $border-footer;
+  border-left: none;
+  border-right: none;
+  padding: 10px;
+}
+
+.region-navigation {
+  @include clearfix;
+  @extend %wrapped;
+
+  a {
+    @include link-colors($menu-link, $menu-link-hover, $menu-link-hover, $menu-link, $menu-link-hover);
+  }
+}
+
+#block-system-main-menu {
+  float: left;
+
+  h2 {
+    @extend %element-invisible;
+  }
+
+  .content {
+    @extend %wrapped;
+
+    ul {
+      @include horizontal-list();
+    }
+  }
+}
+
+#block-logintoboggan-logintoboggan-logged-in {
+  float: right;
+}
