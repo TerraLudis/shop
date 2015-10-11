@@ -11,11 +11,13 @@
       $('#block-commerce-cart-cart', context).once('cart-heading', function() {
         var $target = $(this).find('.line-item-summary-view-cart a');
         var $title = $(this).find('h2');
-        $title
-          .text($title.text() + ' (' + $(this).find('.line-item-quantity-raw').text() + ')')
-          .bind('click', function() {
-            document.location = $target.attr('href');
-          });
+        var count = $(this).find('.line-item-quantity-raw').text();
+        if (count) {
+          $title.text($title.text() + ' (' + count + ')')
+        }
+        $title.bind('click', function() {
+          document.location = $target.attr('href');
+        });
       });
     }
   };
