@@ -5,3 +5,17 @@
  */
 
 include_once 'feature_users.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function feature_users_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['#after_build'][] = '_feature_users_form_user_login_after_build';
+}
+
+function _feature_users_form_user_login_after_build(&$form, &$form_state) {
+  $form['name']['#title'] = t('E-mail');
+  $form['name']['#description'] = t('You may login with your e-mail address.');
+
+  return $form;
+}
