@@ -5,3 +5,30 @@
  */
 
 include_once 'feature_shop_commons.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ */
+function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'commerce_cart_add_to_cart_form_') === 0) {
+    $stock = (int) $form_state['default_product']->commerce_stock[LANGUAGE_NONE][0]['value'];
+
+    // Replace the quantity field by a select box.
+    $form['quantity']['#type'] = 'select';
+    unset($form['quantity']['#size']);
+    $form['quantity']['#options'] = array();
+    for ($i = 1, $n = min($stock, 10) ; $i <= $n ; ++$i) {
+      $form['quantity']['#options'][$i] = $i;
+    }
+
+    // Change the submit button label according to the stock.
+    if ($stock == 0) {
+      $form['quantity']['#options'][0] = 0;
+      $form['quantity']['#disabled'] = TRUE;
+      $form['submit']['#value'] = 'Épuisé';
+      $form['submit']['#disabled'] = TRUE;
+      $form['submit']['#attributes']['class'][] = 'out-of-stock';
+      $form['#attributes']['class'][] = 'out-of-stock';
+    }
+  }
+}
