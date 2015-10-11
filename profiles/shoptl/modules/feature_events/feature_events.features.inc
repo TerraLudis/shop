@@ -30,6 +30,45 @@ function feature_events_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function feature_events_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: event_full.
+  $styles['event_full'] = array(
+    'label' => 'Event full',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 250,
+          'height' => 250,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: event_list.
+  $styles['event_list'] = array(
+    'label' => 'Event list',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 100,
+          'height' => 100,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function feature_events_node_info() {
