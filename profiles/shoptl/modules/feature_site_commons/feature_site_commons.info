@@ -21,6 +21,7 @@ dependencies[] = views
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = body
+features[field_base][] = field_image
 features[filter][] = plain_text
 features[user_permission][] = access administration menu
 features[user_permission][] = access administration pages
