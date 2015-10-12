@@ -1,0 +1,23 @@
+
+#commerce-checkout-form-checkout,
+#commerce-checkout-form-review,
+#commerce-checkout-form-complete {
+  max-width: none;
+
+  input[type="submit"]:not([class*="cancel"]) {
+    max-width: none;
+    width: auto;
+  }
+  .button-operator {
+    padding: 0 5px;
+  }
+}
+
+#commerce-checkout-form-complete {
+  .checkout_completion_message {
+    background: $madang;
+    border: 1px solid $zuccini;
+    color: $zuccini;
+    text-align: center;
+  }
+}
