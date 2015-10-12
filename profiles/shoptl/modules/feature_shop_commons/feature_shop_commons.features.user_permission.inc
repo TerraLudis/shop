@@ -98,6 +98,13 @@ function feature_shop_commons_user_default_permissions() {
     'module' => 'commerce_product',
   );
 
+  // Exported permission: 'ajax order expiration'.
+  $permissions['ajax order expiration'] = array(
+    'name' => 'ajax order expiration',
+    'roles' => array(),
+    'module' => 'commerce_cart_expiration',
+  );
+
   // Exported permission: 'configure order settings'.
   $permissions['configure order settings'] = array(
     'name' => 'configure order settings',
@@ -115,7 +122,10 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'create commerce_customer_profile entities'.
   $permissions['create commerce_customer_profile entities'] = array(
     'name' => 'create commerce_customer_profile entities',
-    'roles' => array(),
+    'roles' => array(
+      'Awaiting validation' => 'Awaiting validation',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'commerce_customer',
   );
 
@@ -202,7 +212,10 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'edit own commerce_customer_profile entities'.
   $permissions['edit own commerce_customer_profile entities'] = array(
     'name' => 'edit own commerce_customer_profile entities',
-    'roles' => array(),
+    'roles' => array(
+      'Awaiting validation' => 'Awaiting validation',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'commerce_customer',
   );
 
@@ -282,14 +295,21 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'view any commerce_product entity'.
   $permissions['view any commerce_product entity'] = array(
     'name' => 'view any commerce_product entity',
-    'roles' => array(),
+    'roles' => array(
+      'Awaiting validation' => 'Awaiting validation',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'commerce_product',
   );
 
   // Exported permission: 'view own commerce_customer_profile entities'.
   $permissions['view own commerce_customer_profile entities'] = array(
     'name' => 'view own commerce_customer_profile entities',
-    'roles' => array(),
+    'roles' => array(
+      'Awaiting validation' => 'Awaiting validation',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'commerce_customer',
   );
 
@@ -320,7 +340,11 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'view own commerce_product entities'.
   $permissions['view own commerce_product entities'] = array(
     'name' => 'view own commerce_product entities',
-    'roles' => array(),
+    'roles' => array(
+      'Awaiting validation' => 'Awaiting validation',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'commerce_product',
   );
 
