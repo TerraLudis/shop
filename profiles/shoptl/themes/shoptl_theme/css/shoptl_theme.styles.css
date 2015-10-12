@@ -7,6 +7,58 @@
   height: 1px;
 }
 
+form {
+  margin: auto;
+  max-width: 500px;
+  width: 100%;
+}
+
+fieldset {
+  margin: 10px 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"]:not([class*="cancel"]) {
+  font-size: 1.2em;
+  padding: 3px 5px;
+  width: 100%;
+}
+
+input[type="submit"]:not([class*="cancel"]) {
+  background: #e7e6ea;
+  border: 1px solid #424146;
+  border-radius: 3px;
+  color: #424146;
+  cursor: pointer;
+}
+input[type="submit"]:not([class*="cancel"]):hover, input[type="submit"]:not([class*="cancel"]):focus {
+  background: #AEB5B7;
+  border: 1px solid #38383d;
+  color: #38383d;
+}
+input[type="submit"]:not([class*="cancel"])[disabled] {
+  background: #f3f2f7;
+  border: 1px solid #7c7b80;
+  color: #7c7b80;
+  cursor: default;
+}
+
+input[type="submit"][class*="cancel"] {
+  padding: 0;
+}
+
+.password-parent,
+.confirm-parent {
+  width: auto;
+}
+.password-parent .password-strength,
+.password-parent .password-confirm,
+.confirm-parent .password-strength,
+.confirm-parent .password-confirm {
+  margin: 0;
+}
+
 .l-main, .l-footer, .region-header, .region-navigation, #block-system-main-menu .content {
   margin: auto;
   max-width: 960px;
@@ -141,6 +193,76 @@ table {
 }
 #block-commerce-cart-cart:hover .content {
   max-height: 300px;
+}
+
+.view-commerce-cart-summary .view-content form,
+.view-commerce-cart-form .view-content form {
+  max-width: none;
+}
+.view-commerce-cart-summary .view-content table,
+.view-commerce-cart-form .view-content table {
+  width: 100%;
+}
+.view-commerce-cart-summary .view-content table td,
+.view-commerce-cart-form .view-content table td {
+  line-height: 2.5em;
+  padding: 0 5px 0 0;
+  vertical-align: middle;
+}
+.view-commerce-cart-summary .view-content table input[type="text"],
+.view-commerce-cart-form .view-content table input[type="text"] {
+  font-size: 1em;
+  width: auto;
+}
+.view-commerce-cart-summary .view-content table input[type="submit"],
+.view-commerce-cart-form .view-content table input[type="submit"] {
+  width: auto;
+}
+.view-commerce-cart-summary .view-content .expiration,
+.view-commerce-cart-form .view-content .expiration {
+  background: #e7e6ea;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  float: left;
+  padding: 5px;
+}
+.view-commerce-cart-summary .view-content .expiration span,
+.view-commerce-cart-form .view-content .expiration span {
+  font-weight: bold;
+}
+.view-commerce-cart-summary .view-content .expiration.cart-expired,
+.view-commerce-cart-form .view-content .expiration.cart-expired {
+  border-color: red;
+  color: red;
+}
+.view-commerce-cart-summary .view-content .form-actions input,
+.view-commerce-cart-form .view-content .form-actions input {
+  margin: 2px 5px;
+  max-width: 150px;
+}
+
+#commerce-checkout-form-checkout,
+#commerce-checkout-form-review,
+#commerce-checkout-form-complete {
+  max-width: none;
+}
+#commerce-checkout-form-checkout input[type="submit"]:not([class*="cancel"]),
+#commerce-checkout-form-review input[type="submit"]:not([class*="cancel"]),
+#commerce-checkout-form-complete input[type="submit"]:not([class*="cancel"]) {
+  max-width: none;
+  width: auto;
+}
+#commerce-checkout-form-checkout .button-operator,
+#commerce-checkout-form-review .button-operator,
+#commerce-checkout-form-complete .button-operator {
+  padding: 0 5px;
+}
+
+#commerce-checkout-form-complete .checkout_completion_message {
+  background: #B7F0BE;
+  border: 1px solid #044022;
+  color: #044022;
+  text-align: center;
 }
 
 .field-name-field-tickets {
@@ -308,4 +430,28 @@ table {
 
 #block-logintoboggan-logintoboggan-logged-in {
   float: right;
+}
+
+.view-commerce-user-orders .view-content form,
+.view-commerce-line-item-table .view-content form {
+  max-width: none;
+}
+.view-commerce-user-orders .view-content table,
+.view-commerce-line-item-table .view-content table {
+  width: 100%;
+}
+.view-commerce-user-orders .view-content table td,
+.view-commerce-line-item-table .view-content table td {
+  line-height: 2.5em;
+  padding: 0 5px 0 0;
+  vertical-align: middle;
+}
+.view-commerce-user-orders .view-content table input[type="text"],
+.view-commerce-line-item-table .view-content table input[type="text"] {
+  font-size: 1em;
+  width: auto;
+}
+.view-commerce-user-orders .view-content table input[type="submit"],
+.view-commerce-line-item-table .view-content table input[type="submit"] {
+  width: auto;
 }
