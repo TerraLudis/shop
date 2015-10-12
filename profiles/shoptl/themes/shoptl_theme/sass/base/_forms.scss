@@ -1,0 +1,52 @@
+
+form {
+  margin: auto;
+  max-width: 500px;
+  width: 100%;
+}
+
+fieldset {
+  margin: 10px 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"]:not([class*="cancel"]) {
+  font-size: 1.2em;
+  padding: 3px 5px;
+  width: 100%;
+}
+
+input[type="submit"]:not([class*="cancel"]) {
+  background: $mischka;
+  border: 1px solid $ship-gray;
+  border-radius: 3px;
+  color: $ship-gray;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    background: $hit-gray;
+    border: 1px solid $tuna;
+    color: $tuna;
+  }
+
+  &[disabled] {
+    background: $whisper;
+    border: 1px solid $jumbo;
+    color: $jumbo;
+    cursor: default;
+  }
+}
+input[type="submit"][class*="cancel"] {
+  padding: 0;
+}
+
+.password-parent,
+.confirm-parent {
+  width: auto;
+
+  .password-strength,
+  .password-confirm {
+    margin: 0;
+  }
+}
