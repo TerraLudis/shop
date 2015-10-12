@@ -32,3 +32,12 @@ function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
     }
   }
 }
+
+/**
+ * Implements hook_default_rules_configuration_alter().
+ */
+function feature_shop_commons_default_rules_configuration_alter(&$configs) {
+  if (!empty($configs['commerce_cart_expiration_delete_expired_carts'])) {
+    $configs['commerce_cart_expiration_delete_expired_carts']->active = FALSE;
+  }
+}
