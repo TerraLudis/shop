@@ -143,6 +143,22 @@ table {
   max-height: 300px;
 }
 
+.field-name-field-tickets {
+  clear: both;
+}
+.field-name-field-tickets:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.field-name-field-tickets > .field-items > .field-item {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-bottom: 30px;
+  vertical-align: top;
+  width: 25%;
+}
+
 .l-footer {
   background: #101012;
   border: 1px solid #212124;
