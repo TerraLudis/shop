@@ -1,0 +1,17 @@
+
+.node-event {
+
+}
+
+.field-name-field-tickets {
+  @include clearfix;
+  clear: both;
+
+  & > .field-items > .field-item {
+    box-sizing: border-box;
+    display: inline-block;
+    padding-bottom: 30px;
+    vertical-align: top;
+    width: 25%;
+  }
+}
