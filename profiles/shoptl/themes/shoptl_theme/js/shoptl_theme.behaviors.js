@@ -16,7 +16,7 @@
           $title.text($title.text() + ' (' + count + ')')
         }
         $title.bind('click', function() {
-          document.location = $target.attr('href');
+          document.location = '/cart';
         });
       });
     }
