@@ -5,3 +5,23 @@
  */
 
 include_once 'feature_site_commons.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function feature_site_commons_menu() {
+  return array(
+    'empty' => array(
+      'page callback' => '_feature_site_commons_empty_callback',
+      'access callback' => TRUE,
+    ),
+  );
+}
+
+/**
+ * empty page callback.
+ */
+function _feature_site_commons_empty_callback() {
+  drupal_set_title('');
+  return '';
+}
