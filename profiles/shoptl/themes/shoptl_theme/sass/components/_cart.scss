@@ -98,3 +98,54 @@
     }
   }
 }
+
+.view-commerce-cart-summary,
+.view-commerce-cart-form {
+  .view-content {
+    form {
+      max-width: none;
+    }
+
+    table {
+      width: 100%;
+
+      td {
+        line-height: 2.5em;
+        padding: 0 5px 0 0;
+        vertical-align: middle;
+      }
+
+      input[type="text"] {
+        font-size: 1em;
+        width: auto;
+      }
+      input[type="submit"] {
+        width: auto;
+      }
+    }
+
+    .expiration {
+      background: $mischka;
+      border: 1px solid $dusty-gray;
+      border-radius: 5px;
+      float: left;
+      padding: 5px;
+
+      span {
+        font-weight: bold;
+      }
+
+      &.cart-expired {
+        border-color: red;
+        color: red;
+      }
+    }
+
+    .form-actions {
+      input {
+        margin: 2px 5px;
+        max-width: 150px;
+      }
+    }
+  }
+}
