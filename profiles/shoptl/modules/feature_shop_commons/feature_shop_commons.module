@@ -55,6 +55,20 @@ function feature_shop_commons_form_views_form_commerce_cart_form_default_alter(&
     ),
   );
   $form['actions']['#weight'] += 1;
+
+  // Ensure things are clear when cart has expired.
+  if ($order->changed + $interval <= REQUEST_TIME) {
+    // Show an accurate message.
+    $form['expiration']['message']['#markup'] = 'Validité du panier : <span>Votre panier a expiré !</span>';
+    $form['expiration']['#attributes']['class'][] = 'disabled';
+    $form['expiration']['#attributes']['class'][] = 'cart-expired';
+    unset($form['expiration']['#attached']);
+
+    // Disable buttons.
+    $form['actions']['submit']['#disabled'] = TRUE;
+    $form['actions']['checkout']['#disabled'] = TRUE;
+    $form['edit_delete']['#disabled'] = TRUE;
+  }
 }
 
 /**
