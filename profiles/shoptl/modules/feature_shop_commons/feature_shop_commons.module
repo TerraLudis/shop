@@ -88,4 +88,38 @@ function feature_shop_commons_default_rules_configuration_alter(&$configs) {
       }
     }');
   }
+  if (!empty($configs['commerce_payment_paypal_wps'])) {
+    $configs['commerce_payment_paypal_wps'] = rules_import('{ "commerce_payment_paypal_wps" : {
+        "LABEL" : "PayPal WPS",
+        "PLUGIN" : "reaction rule",
+        "OWNER" : "rules",
+        "TAGS" : [ "Commerce Payment" ],
+        "REQUIRES" : [ "commerce_payment" ],
+        "ON" : { "commerce_payment_methods" : [] },
+        "DO" : [
+          { "commerce_payment_enable_paypal_wps" : {
+              "commerce_order" : [ "commerce-order" ],
+              "payment_method" : { "value" : {
+                  "method_id" : "paypal_wps",
+                  "settings" : {
+                    "business" : "tresorier@terraludis.org",
+                    "currency_code" : "EUR",
+                    "allow_supported_currencies" : 0,
+                    "language" : "FR",
+                    "server" : "live",
+                    "payment_action" : "sale",
+                    "ipn_logging" : "notification",
+                    "receiver_emails" : "",
+                    "ipn_create_billing_profile" : 0,
+                    "show_payment_instructions" : 0
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }');
+    $configs['commerce_payment_paypal_wps']->active = TRUE;
+  }
 }
