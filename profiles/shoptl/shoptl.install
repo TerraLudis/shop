@@ -1,82 +1,193 @@
 <?php
 /**
  * @file
- * Install, update and uninstall functions for the standard installation profile.
+ * Install, update and uninstall functions for the Shop TL installation profile.
  */
 
 /**
  * Implements hook_install().
  *
- * Perform actions to set up the site for this profile.
+ * Performs actions to set up the site for this profile.
  *
  * @see system_install()
  */
 function shoptl_install() {
-  // Enable some standard blocks.
-  $default_theme = 'shoptl_theme';
-  $admin_theme = 'adminimal';
-  $blocks = array(
-    array(
-      'module' => 'system',
-      'delta' => 'main',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'content',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'main',
-      'theme' => $admin_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'content',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'system',
-      'delta' => 'help',
-      'theme' => $admin_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'help',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
-      'module' => 'user',
-      'delta' => 'login',
-      'theme' => $admin_theme,
-      'status' => 1,
-      'weight' => 10,
-      'region' => 'content',
-      'pages' => '',
-      'cache' => -1,
-    ),
-  );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
-  foreach ($blocks as $block) {
-    $query->values($block);
-  }
-  $query->execute();
+  // Allow visitors to register.
+  variable_set('user_register', USER_REGISTER_VISITORS);
 
-  // Allow visitor account creation with administrative approval.
-  variable_set('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL);
-
-  // Enable default permissions for system roles.
+  // Give access to the published content to everyone.
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content'));
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content'));
+}
 
-  // Enable the admin & default themes.
-  db_update('system')
-    ->fields(array('status' => 1))
-    ->condition('type', 'theme')
-    ->condition('name', [$admin_theme, $default_theme])
+/**
+ * Implements hook_install_tasks().
+ */
+function shoptl_install_tasks(&$install_state) {
+  $tasks = array();
+
+  $tasks['shoptl_install_theme'] = array(
+    'display_name' => st('Theme installation'),
+    'display' => TRUE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => '_shoptl_install_theme',
+  );
+
+  $tasks['shoptl_install_locale'] = array(
+    'display_name' => st('Locale installation'),
+    'display' => TRUE,
+    'type' => 'batch',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => '_shoptl_install_locale',
+  );
+
+  $tasks['shoptl_install_variables'] = array(
+    'display_name' => st('Variables installation'),
+    'display' => TRUE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => '_shoptl_install_variables',
+  );
+
+  $tasks['shoptl_install_user1'] = array(
+    'display_name' => st('User1 installation'),
+    'display' => TRUE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => '_shoptl_install_user1',
+  );
+
+  return $tasks;
+}
+
+/**
+ * Enable default and admin themes and hide all but system/main blocks to let
+ * context manage them.
+ */
+function _shoptl_install_theme(&$install_state) {
+  $settings = $install_state['profile_info']['settings'];
+  $theme_name = $settings['default_theme'];
+
+  // Set default theme.
+  theme_enable(array($theme_name));
+  theme_disable(array('bartik', 'garland', 'seven', 'stark'));
+  variable_set('theme_default', $theme_name);
+
+  // Set admin theme.
+  theme_enable(array('adminimal'));
+  variable_set('admin_theme', 'adminimal');
+  variable_set('node_admin_theme', TRUE);
+
+  // Disable all blocks by default except system-main. Use context to enable them.
+  db_update('block')
+    ->fields(array('region' => -1))
+    ->condition(
+      db_or()
+        ->condition('delta', 'main', '!=')
+        ->condition('module', 'system', '!=')
+    )
     ->execute();
-  variable_set('default_theme', $default_theme);
-  variable_set('admin_theme', $admin_theme);
-  variable_set('node_admin_theme', '1');
+}
+
+/**
+ * Enable french language and set it as default then disable other languages and
+ * download french translations.
+ */
+function _shoptl_install_locale(&$install_state) {
+  $settings = $install_state['profile_info']['settings'];
+
+  $to_enable = $settings['languages'];
+  $to_enable[] = $settings['default_language'];
+  $to_enable = array_unique($to_enable);
+
+  // Stop here if there is no language to enable (only english needed).
+  if (count($to_enable) == 1 && current($to_enable) == 'en') {
+    return;
+  }
+
+  // Add languages to enable.
+  include_once DRUPAL_ROOT . '/includes/locale.inc';
+  $langs = language_list();
+  foreach ($to_enable as $lang) {
+    if (empty($langs[$lang])) {
+      locale_add_language($lang);
+    }
+    $langs = language_list();
+  }
+
+  // Enable languages and set it as default.
+  db_update('languages')
+    ->fields(array(
+      'enabled' => '1',
+    ))
+    ->condition('language', $to_enable, 'IN')
+    ->execute();
+  variable_set('language_default', (object) $langs[$settings['default_language']]);
+
+  // Disable all other languages.
+  db_update('languages')
+    ->fields(array(
+      'enabled' => '0',
+    ))
+    ->condition('language', $to_enable, 'NOT IN')
+    ->execute();
+
+  // Reset languages static cache to avoid issues with l10n_update.
+  drupal_static_reset('language_list');
+
+  // Download translations by using the l10n_update module batch.
+  if (!empty($settings['download_translations'])) {
+    module_enable(array('l10n_update'));
+    module_load_include('inc', 'l10n_update', 'l10n_update.check');
+    l10n_update_language_refresh($to_enable);
+  }
+
+  // Get the current batch (empty if download_translations is disabled).
+  $batch = batch_get();
+
+  // Disable l10n_update at the end of the process for performance reasons.
+  if (!empty($settings['download_translations'])) {
+    $batch['operations'][] = array('module_disable', array(array('l10n_update')));
+  }
+
+  // Import local translations.
+  $modules = module_list();
+  $modules[] = $install_state['parameters']['profile'];
+  $batch['operations'][] = array('module_invoke', array($install_state['parameters']['profile'], 'modules_enabled', $modules));
+
+  return $batch;
+}
+
+/**
+ * Preset base configuration variables.
+ */
+function _shoptl_install_variables(&$install_state) {
+  $settings = $install_state['profile_info']['settings'];
+
+  variable_set('site_name',  $settings['site_name']);
+  variable_set('site_slogan',  $settings['site_slogan']);
+  variable_set('site_mail',  $settings['site_mail']);
+
+  variable_set('site_default_country',$settings['default_country']);
+  variable_set('date_default_timezone', $settings['default_timezone']);
+  variable_set('clean_url', 1);
+
+  variable_set('update_notify_emails', array($settings['site_mail']));
+  module_disable(array('update'));
+}
+
+/**
+ * Force user1 settings.
+ */
+function _shoptl_install_user1(&$install_state) {
+  $settings = $install_state['profile_info']['settings'];
+  $user1 = user_load(1);
+
+  $edit = array();
+  $edit['name'] = $settings['user1_name'];
+  $edit['mail'] = $settings['site_mail'];
+  $edit['pass'] = user_password(50); // Use drush to log in as user1.
+
+  user_save($user1, $edit);
 }
