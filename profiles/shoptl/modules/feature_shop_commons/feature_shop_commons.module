@@ -38,7 +38,7 @@ function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
  */
 function feature_shop_commons_form_views_form_commerce_cart_form_default_alter(&$form, &$form_state, $form_id) {
   $order = $form_state['order'];
-  $interval = _feature_shop_commons_get_cart_expiration_interval();
+  $interval = _commerce_cart_expiration_get_interval();
   $js_path = drupal_get_path('module', 'feature_shop_commons') . '/js';
   $form['expiration'] = array(
     '#type' => 'container',
@@ -76,27 +76,16 @@ function feature_shop_commons_form_views_form_commerce_cart_form_default_alter(&
  */
 function feature_shop_commons_default_rules_configuration_alter(&$configs) {
   if (!empty($configs['commerce_cart_expiration_delete_expired_carts'])) {
-    $configs['commerce_cart_expiration_delete_expired_carts']->active = FALSE;
+    $configs['commerce_cart_expiration_delete_expired_carts'] = rules_import('{ "commerce_cart_expiration_delete_expired_carts" : {
+        "LABEL" : "Delete expired carts",
+        "PLUGIN" : "reaction rule",
+        "OWNER" : "rules",
+        "REQUIRES" : [ "commerce_cart_expiration" ],
+        "ON" : { "commerce_cart_expiration_cron" : [] },
+        "DO" : [
+          { "commerce_cart_expiration_delete_orders" : { "interval" : 3600, "limit" : "100" } }
+        ]
+      }
+    }');
   }
-}
-
-
-// -----------------------------------------------------------------------------
-// Helpers.
-
-/**
- * Get the interval configured in Rules, if any.
- *
- * @return number
- *   The expiration interval in seconds.
- */
-function _feature_shop_commons_get_cart_expiration_interval() {
-  $interval = 0;
-  $config = rules_config_load('commerce_cart_expiration_delete_expired_carts_custom');
-  foreach ($config->actions() as $action) {
-    if ($action->getElementName() == 'commerce_cart_expiration_delete_orders') {
-      $interval = $action->settings['interval'];
-    }
-  }
-  return $interval;
 }

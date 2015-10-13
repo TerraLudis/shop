@@ -43,7 +43,6 @@ features[field_base][] = commerce_stock
 features[field_base][] = commerce_total
 features[field_base][] = commerce_unit_price
 features[field_instance][] = commerce_customer_profile-billing-commerce_customer_address
-features[rules_config][] = commerce_cart_expiration_delete_expired_carts_custom
 features[user_permission][] = access checkout
 features[user_permission][] = administer checkout
 features[user_permission][] = administer commerce_customer_profile entities
