@@ -1,0 +1,15 @@
+
+.node-ticket {
+  h2 {
+    a {
+      @include link-colors($text, $text, $text, $text, $text);
+      cursor: text;
+      text-decoration: none;
+    }
+  }
+
+  .field-name-commerce-price {
+    font-size: 1.5em;
+    text-align: right;
+  }
+}
