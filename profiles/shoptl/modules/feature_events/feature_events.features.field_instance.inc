@@ -10,7 +10,7 @@
 function feature_events_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'commerce_product-ticket-commerce_price'
+  // Exported field_instance: 'commerce_product-ticket-commerce_price'.
   $field_instances['commerce_product-ticket-commerce_price'] = array(
     'bundle' => 'ticket',
     'default_value' => NULL,
@@ -104,7 +104,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'commerce_product-ticket-commerce_stock'
+  // Exported field_instance: 'commerce_product-ticket-commerce_stock'.
   $field_instances['commerce_product-ticket-commerce_stock'] = array(
     'bundle' => 'ticket',
     'default_value' => array(
@@ -159,7 +159,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-body'
+  // Exported field_instance: 'node-event-body'.
   $field_instances['node-event-body'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -203,7 +203,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_date'
+  // Exported field_instance: 'node-event-field_date'.
   $field_instances['node-event-field_date'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -267,7 +267,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_image'
+  // Exported field_instance: 'node-event-field_image'.
   $field_instances['node-event-field_image'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -321,7 +321,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_tickets'
+  // Exported field_instance: 'node-event-field_tickets'.
   $field_instances['node-event-field_tickets'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -371,7 +371,7 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ticket-field_ticket'
+  // Exported field_instance: 'node-ticket-field_ticket'.
   $field_instances['node-ticket-field_ticket'] = array(
     'bundle' => 'ticket',
     'deleted' => 0,

@@ -11,7 +11,7 @@ function feature_shop_commons_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'commerce_customer_profile-billing-commerce_customer_address'
+  // 'commerce_customer_profile-billing-commerce_customer_address'.
   $field_instances['commerce_customer_profile-billing-commerce_customer_address'] = array(
     'bundle' => 'billing',
     'default_value' => NULL,

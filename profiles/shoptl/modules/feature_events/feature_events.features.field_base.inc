@@ -10,7 +10,7 @@
 function feature_events_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_ticket'
+  // Exported field_base: 'field_ticket'.
   $field_bases['field_ticket'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function feature_events_field_default_field_bases() {
     'type' => 'commerce_product_reference',
   );
 
-  // Exported field_base: 'field_tickets'
+  // Exported field_base: 'field_tickets'.
   $field_bases['field_tickets'] = array(
     'active' => 1,
     'cardinality' => -1,

@@ -99,6 +99,26 @@ function feature_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_value']['operator'] = '>';
   $handler->display->display_options['filters']['field_date_value']['form_type'] = 'date_text';
   $handler->display->display_options['filters']['field_date_value']['default_date'] = 'now';
+  $translatables['events'] = array(
+    t('Master'),
+    t('Tous les événements'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('List (Page)'),
+    t('Next (Block)'),
+    t('Prochains événements'),
+  );
   $export['events'] = $view;
 
   return $export;

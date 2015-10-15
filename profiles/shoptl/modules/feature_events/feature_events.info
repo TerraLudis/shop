@@ -9,6 +9,7 @@ dependencies[] = commerce_product
 dependencies[] = commerce_product_reference
 dependencies[] = commerce_product_ui
 dependencies[] = ctools
+dependencies[] = date
 dependencies[] = date_all_day
 dependencies[] = date_popup
 dependencies[] = entityreference
