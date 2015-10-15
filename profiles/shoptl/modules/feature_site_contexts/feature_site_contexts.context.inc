@@ -38,9 +38,9 @@ function feature_site_contexts_context_default_contexts() {
           'region' => 'navigation',
           'weight' => '-10',
         ),
-        'logintoboggan-logintoboggan_logged_in' => array(
-          'module' => 'logintoboggan',
-          'delta' => 'logintoboggan_logged_in',
+        'feature_site_contexts-user_menu' => array(
+          'module' => 'feature_site_contexts',
+          'delta' => 'user_menu',
           'region' => 'navigation',
           'weight' => '-9',
         ),

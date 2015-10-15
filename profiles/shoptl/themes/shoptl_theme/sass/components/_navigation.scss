@@ -32,6 +32,10 @@
   }
 }
 
-#block-logintoboggan-logintoboggan-logged-in {
+#block-feature-site-contexts-user-menu {
   float: right;
+
+  ul {
+    @include horizontal-list();
+  }
 }

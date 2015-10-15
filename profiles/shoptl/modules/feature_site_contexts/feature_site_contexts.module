@@ -19,6 +19,10 @@ function feature_site_contexts_block_info() {
       'info' => 'SSL Picture',
       'cache' => CACHE_PERMANENT,
     ],
+    'user_menu' => [
+      'info' => 'Custom user menu',
+      'cache' => DRUPAL_CACHE_PER_USER,
+    ],
   ];
 }
 
@@ -44,6 +48,33 @@ function feature_site_contexts_block_view($delta = '') {
       $block['content'] = [
         '#markup' => "Ce site est géré par l'association loi 1901 <a href=\"http://terraludis.org\">Terra Ludis</a>.",
       ];
+      break;
+
+    case 'user_menu':
+      $block['content'] = [
+        '#theme' => 'links',
+        '#links' => [],
+      ];
+      if (user_is_anonymous()) {
+        $block['content']['#links'][] = [
+          'title' => 'Connexion',
+          'href' => 'user/login',
+        ];
+        $block['content']['#links'][] = [
+          'title' => 'Inscription',
+          'href' => 'user/register',
+        ];
+      }
+      else {
+        $block['content']['#links'][] = [
+          'title' => 'Mon compte',
+          'href' => 'user',
+        ];
+        $block['content']['#links'][] = [
+          'title' => 'Déconnexion',
+          'href' => 'user/logout',
+        ];
+      }
       break;
   }
 
