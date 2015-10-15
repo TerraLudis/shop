@@ -46,13 +46,14 @@ function feature_events_image_default_styles() {
   $styles['event_full'] = array(
     'label' => 'Event full',
     'effects' => array(
-      2 => array(
-        'name' => 'image_scale_and_crop',
+      4 => array(
+        'name' => 'image_scale',
         'data' => array(
-          'width' => 250,
-          'height' => 250,
+          'width' => 350,
+          'height' => '',
+          'upscale' => 0,
         ),
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
   );
@@ -61,13 +62,14 @@ function feature_events_image_default_styles() {
   $styles['event_list'] = array(
     'label' => 'Event list',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale_and_crop',
+      2 => array(
+        'name' => 'image_scale',
         'data' => array(
-          'width' => 100,
-          'height' => 100,
+          'width' => 200,
+          'height' => '',
+          'upscale' => 0,
         ),
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
   );
