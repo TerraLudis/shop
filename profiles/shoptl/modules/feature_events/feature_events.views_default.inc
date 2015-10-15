@@ -40,7 +40,7 @@ function feature_events_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Sort criterion: Content: Dates de l&#039;événement -  start date (field_date) */
+  /* Sort criterion: Content: Dates de l&#039;événement (field_date) */
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
@@ -72,7 +72,7 @@ function feature_events_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Dates de l&#039;événement -  start date (field_date) */
+  /* Sort criterion: Content: Dates de l&#039;événement (field_date) */
   $handler->display->display_options['sorts']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['sorts']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['sorts']['field_date_value']['field'] = 'field_date_value';
@@ -92,13 +92,11 @@ function feature_events_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
-  /* Filter criterion: Content: Dates de l&#039;événement -  start date (field_date) */
+  /* Filter criterion: Content: Dates de l&#039;événement (field_date) */
   $handler->display->display_options['filters']['field_date_value']['id'] = 'field_date_value';
   $handler->display->display_options['filters']['field_date_value']['table'] = 'field_data_field_date';
   $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
   $handler->display->display_options['filters']['field_date_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_date_value']['form_type'] = 'date_text';
-  $handler->display->display_options['filters']['field_date_value']['default_date'] = 'now';
   $translatables['events'] = array(
     t('Master'),
     t('Tous les événements'),
