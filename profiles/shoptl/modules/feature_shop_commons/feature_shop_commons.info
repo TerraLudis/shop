@@ -36,6 +36,7 @@ features[features_api][] = api:2
 features[field_base][] = commerce_customer_address
 features[field_base][] = commerce_customer_billing
 features[field_base][] = commerce_display_path
+features[field_base][] = commerce_entitycache
 features[field_base][] = commerce_line_items
 features[field_base][] = commerce_order_total
 features[field_base][] = commerce_price

@@ -8,6 +8,7 @@ dependencies[] = block
 dependencies[] = contextual
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = entitycache
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = image
