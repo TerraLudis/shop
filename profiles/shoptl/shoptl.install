@@ -136,11 +136,17 @@ function _shoptl_install_locale(&$install_state) {
   // Reset languages static cache to avoid issues with l10n_update.
   drupal_static_reset('language_list');
 
+  $modules = module_list();
+  $modules[] = $install_state['parameters']['profile'];
+
   // Download translations by using the l10n_update module batch.
   if (!empty($settings['download_translations'])) {
     module_enable(array('l10n_update'));
-    module_load_include('inc', 'l10n_update', 'l10n_update.check');
-    l10n_update_language_refresh($to_enable);
+    module_load_include('fetch.inc', 'l10n_update');
+    drupal_static_reset('file_get_stream_wrappers');
+    $options = _l10n_update_default_update_options();
+    $batch = l10n_update_batch_update_build($modules, $to_enable, $options);
+    batch_set($batch);
   }
 
   // Get the current batch (empty if download_translations is disabled).
@@ -152,8 +158,6 @@ function _shoptl_install_locale(&$install_state) {
   }
 
   // Import local translations.
-  $modules = module_list();
-  $modules[] = $install_state['parameters']['profile'];
   $batch['operations'][] = array('module_invoke', array($install_state['parameters']['profile'], 'modules_enabled', $modules));
 
   return $batch;

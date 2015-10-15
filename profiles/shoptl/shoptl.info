@@ -15,6 +15,9 @@ settings[site_name] = "Terra Ludis boutique"
 settings[site_slogan] = "Événements et goodies de l'association Terra Ludis."
 settings[user1_name] = "webmaster"
 
+; Core
+dependencies[] = locale
+
 ; Contrib dependencies
 dependencies[] = adminimal_admin_menu
 
