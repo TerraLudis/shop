@@ -2,10 +2,16 @@
 .node-event {
   .field-name-field-image {
     float: right;
-    margin-left: 15px;
+    margin: 0 0 15px 15px;
   }
   .field-name-field-date {
     font-weight: bold;
+  }
+
+  &.node-teaser {
+    .field-name-field-image {
+      margin-top: -45px;
+    }
   }
 }
 
