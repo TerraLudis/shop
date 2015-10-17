@@ -42,7 +42,11 @@ function feature_shop_commons_form_views_form_commerce_cart_form_default_alter(&
   $js_path = drupal_get_path('module', 'feature_shop_commons') . '/js';
   $form['expiration'] = array(
     '#type' => 'container',
-    '#attributes' => array('class' => array('expiration'), 'data-cart-countdown' => ($order->changed + $interval)),
+    '#attributes' => array(
+      'class' => array('expiration'),
+      'data-cart-countdown' => ($order->changed + $interval),
+      'data-cart-id' => $order->order_id,
+    ),
     '#weight' => $form['actions']['#weight'],
     'message' => array(
       '#markup' => 'Validité du panier : <span>' . format_date($order->changed + $interval) . '</span>',
@@ -59,10 +63,9 @@ function feature_shop_commons_form_views_form_commerce_cart_form_default_alter(&
   // Ensure things are clear when cart has expired.
   if ($order->changed + $interval <= REQUEST_TIME) {
     // Show an accurate message.
-    $form['expiration']['message']['#markup'] = 'Validité du panier : <span>Votre panier a expiré !</span>';
+    $form['expiration']['message']['#markup'] = 'Votre panier a expiré !';
     $form['expiration']['#attributes']['class'][] = 'disabled';
     $form['expiration']['#attributes']['class'][] = 'cart-expired';
-    unset($form['expiration']['#attached']);
 
     // Disable buttons.
     $form['actions']['submit']['#disabled'] = TRUE;
