@@ -262,8 +262,10 @@ function commerce_cart_expiration_expire_ajax($order) {
   if (isset($statuses[$order->status])) {
     // Replace explanation page tokens here because this is the last point
     // where we can use the order.
-    $explanation_content = variable_get('commerce_cart_expiration_explanation_page', array('value' => '<p>'. t('Sorry, you took too much time in the checkout process.') .'</p><p>'. t('<a href="[site:url]">Return to the front page.</a>') .'</p>', 'format' => NULL));
-    $text = check_markup($explanation_content['value'], $explanation_content['format']);
+    $text = variable_get('commerce_cart_expiration_explanation_page', '<p>'. t('Sorry, you took too much time in the checkout process.') .'</p><p>'. t('<a href="[site:url]">Return to the front page.</a>') .'</p>');
+    if (is_array($text)) {
+      $text = check_markup($text['value'], $text['format']);
+    }
     $text = token_replace($text, array('commerce-order' => $order, 'site' => NULL, 'user' => $user));
 
     // Store this text in user session:
