@@ -4,12 +4,13 @@
     attach: function(context, settings) {
       $('[data-cart-countdown]').once('cart-countdown', function() {
         var cartId = $(this).data('cart-id');
+        var expiration = $(this).data('cart-countdown') * 1000;
 
-        if ($(this).data('cart-countdown') <= Date.now()) {
+        if (expiration <= Date.now()) {
           Drupal.behaviors.CartCountdown._expire(cartId);
         }
         else {
-          var date = new Date($(this).data('cart-countdown') * 1000);
+          var date = new Date(expiration);
 
           $(this).find('span')
             .countdown(date, function(event) {
