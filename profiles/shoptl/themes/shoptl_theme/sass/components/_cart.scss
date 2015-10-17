@@ -144,7 +144,8 @@
     .form-actions {
       input {
         margin: 2px 5px;
-        max-width: 150px;
+        max-width: none;
+        width: auto;
       }
     }
   }
