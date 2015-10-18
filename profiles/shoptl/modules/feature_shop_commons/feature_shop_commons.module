@@ -128,7 +128,7 @@ function feature_shop_commons_default_rules_configuration_alter(&$configs) {
         "REQUIRES" : [ "commerce_cart_expiration" ],
         "ON" : { "commerce_cart_expiration_cron" : [] },
         "DO" : [
-          { "commerce_cart_expiration_delete_orders" : { "interval" : 3600, "limit" : "100" } }
+          { "commerce_cart_expiration_delete_orders" : { "interval" : 1800, "limit" : "100" } }
         ]
       }
     }');
