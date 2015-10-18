@@ -31,6 +31,35 @@ function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
       $form['#attributes']['class'][] = 'out-of-stock';
     }
   }
+
+  if ($form_id == 'commerce_checkout_form_checkout') {
+    if (isset($form['customer_profile_billing'])) {
+      $form['customer_profile_billing']['#title'] = t($form['customer_profile_billing']['#title']);
+    }
+    if (isset($form['customer_profile_shipping'])) {
+      $form['customer_profile_shipping']['#title'] = t($form['customer_profile_shipping']['#title']);
+    }
+  }
+}
+
+/**
+ * Implements hook_commerce_price_formatted_components_alter().
+ */
+function feature_shop_commons_commerce_price_formatted_components_alter(&$components, $price, $entity) {
+  foreach ($components as &$component) {
+    $component['title'] = t($component['title']);
+  }
+}
+
+/**
+ * Implements hook_commerce_checkout_pane_info_alter().
+ */
+function feature_shop_commons_commerce_checkout_pane_info_alter(&$checkout_panes) {
+  foreach (array('billing', 'shipping') as $type) {
+    if (!empty($checkout_panes['customer_profile_' . $type])) {
+      $checkout_panes['customer_profile_' . $type]['title'] = t($checkout_panes['customer_profile_' . $type]['title']);
+    }
+  }
 }
 
 /**
