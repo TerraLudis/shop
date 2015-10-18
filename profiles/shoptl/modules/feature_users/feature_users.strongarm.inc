@@ -49,7 +49,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'aun_pattern';
-  $strongarm->value = '[user:mail]';
+  $strongarm->value = '[user:field-name]';
   $export['aun_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -308,7 +308,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'aun_transliterate';
-  $strongarm->value = FALSE;
+  $strongarm->value = 0;
   $export['aun_transliterate'] = $strongarm;
 
   $strongarm = new stdClass();
