@@ -13,6 +13,15 @@
 
   a {
     @include link-colors($menu-link, $menu-link-hover, $menu-link-hover, $menu-link, $menu-link-hover);
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+
+    &.active {
+      color: $menu-link-hover;
+      font-weight: bold;
+    }
   }
 }
 
