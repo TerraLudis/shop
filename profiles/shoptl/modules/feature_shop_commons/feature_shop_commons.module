@@ -40,6 +40,19 @@ function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
       $form['customer_profile_shipping']['#title'] = t($form['customer_profile_shipping']['#title']);
     }
   }
+
+  if ($form_id == 'commerce_checkout_form_complete') {
+    $order = commerce_order_load(arg(1));
+    $form['checkout_completion_message']['message'] = array(
+      '#markup' => '<div class="checkout-completion-message">'
+        . t('Your order number is @order-number.', array('@order-number' => $order->order_id))
+        . '<br />'
+        . t('You can <a href="!order-url">view your order</a> on your account page when logged in.', array('!order-url' => url('user/' . $order->uid . '/orders/' . $order->order_id)))
+        . '<br /><br />'
+        . t('<a href="!site-url">Return to the front page.</a>', array('!site-url' => url('<front>')))
+        . '</div>',
+    );
+  }
 }
 
 /**
