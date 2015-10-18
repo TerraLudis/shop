@@ -57,6 +57,7 @@ features[variable][] = aun_replace_whitespace
 features[variable][] = aun_separator
 features[variable][] = aun_transliterate
 features[variable][] = aun_update_on_edit
+features[variable][] = field_bundle_settings_user__user
 features[variable][] = logintoboggan_confirm_email_at_registration
 features[variable][] = logintoboggan_immediate_login_on_register
 features[variable][] = logintoboggan_login_successful_message
