@@ -7,7 +7,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 0;
   width: 100%;
 }
@@ -16,6 +16,7 @@ body {
   background: $bg-page;
   @include filter-gradient($bg-page-grad, $bg-page, horizontal); // IE6-9 fallback on horizontal gradient
   @include background-image(radial-gradient(center 130px, ellipse farthest-side, $bg-page-grad 0px, $bg-page 600px));
+  overflow-y: auto;
 }
 
 .l-header {}
