@@ -21,3 +21,21 @@
     text-align: center;
   }
 }
+
+.checkout-review {
+  margin-bottom: 1.5em;
+
+  tbody {
+    border-top: none;
+  }
+
+  .pane-title {
+    background: transparent;
+
+    td {
+      font-size: 1.2em;
+      padding: 1em 0 .5em;
+      text-align: center;
+    }
+  }
+}
