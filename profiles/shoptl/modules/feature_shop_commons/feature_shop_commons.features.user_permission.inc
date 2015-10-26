@@ -38,7 +38,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'administer commerce_order entities'.
   $permissions['administer commerce_order entities'] = array(
     'name' => 'administer commerce_order entities',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_order',
   );
 
@@ -177,7 +179,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'edit any commerce_customer_profile entity'.
   $permissions['edit any commerce_customer_profile entity'] = array(
     'name' => 'edit any commerce_customer_profile entity',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_customer',
   );
 
@@ -191,7 +195,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'edit any commerce_order entity'.
   $permissions['edit any commerce_order entity'] = array(
     'name' => 'edit any commerce_order entity',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_order',
   );
 
@@ -267,7 +273,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'view any commerce_customer_profile entity'.
   $permissions['view any commerce_customer_profile entity'] = array(
     'name' => 'view any commerce_customer_profile entity',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_customer',
   );
 
@@ -281,7 +289,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'view any commerce_order entity'.
   $permissions['view any commerce_order entity'] = array(
     'name' => 'view any commerce_order entity',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_order',
   );
 
@@ -297,6 +307,7 @@ function feature_shop_commons_user_default_permissions() {
     'name' => 'view any commerce_product entity',
     'roles' => array(
       'Awaiting validation' => 'Awaiting validation',
+      'Orders Manager' => 'Orders Manager',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),
@@ -351,7 +362,9 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'view payments'.
   $permissions['view payments'] = array(
     'name' => 'view payments',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'commerce_payment',
   );
 

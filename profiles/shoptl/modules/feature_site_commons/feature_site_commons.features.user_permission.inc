@@ -13,14 +13,18 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'access administration menu'.
   $permissions['access administration menu'] = array(
     'name' => 'access administration menu',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'admin_menu',
   );
 
   // Exported permission: 'access administration pages'.
   $permissions['access administration pages'] = array(
     'name' => 'access administration pages',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'system',
   );
 
@@ -262,7 +266,9 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'view the administration theme'.
   $permissions['view the administration theme'] = array(
     'name' => 'view the administration theme',
-    'roles' => array(),
+    'roles' => array(
+      'Orders Manager' => 'Orders Manager',
+    ),
     'module' => 'system',
   );
 
