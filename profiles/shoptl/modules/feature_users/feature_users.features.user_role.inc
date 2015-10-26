@@ -14,6 +14,7 @@ function feature_users_user_default_roles() {
   $roles['Awaiting validation'] = array(
     'name' => 'Awaiting validation',
     'weight' => 2,
+    'machine_name' => 'awaiting_validation',
   );
 
   return $roles;
