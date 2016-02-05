@@ -10,7 +10,7 @@ include_once 'feature_shop_commons.features.inc';
  * Implements hook_form_alter().
  */
 function feature_shop_commons_form_alter(&$form, &$form_state, $form_id) {
-  if (strpos($form_id, 'commerce_cart_add_to_cart_form_') === 0) {
+  if (strpos($form_id, 'commerce_cart_add_to_cart_form_') === 0 && !empty($form_state['default_product'])) {
     $stock = (int) $form_state['default_product']->commerce_stock[LANGUAGE_NONE][0]['value'];
 
     // Replace the quantity field by a select box.
