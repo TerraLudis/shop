@@ -348,7 +348,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'logintoboggan_confirm_email_at_registration';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['logintoboggan_confirm_email_at_registration'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -390,7 +390,7 @@ function feature_users_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'logintoboggan_pre_auth_role';
-  $strongarm->value = '3';
+  $strongarm->value = '224062154';
   $export['logintoboggan_pre_auth_role'] = $strongarm;
 
   $strongarm = new stdClass();

@@ -235,10 +235,7 @@ function feature_shop_commons_user_default_permissions() {
   // Exported permission: 'edit own commerce_order entities'.
   $permissions['edit own commerce_order entities'] = array(
     'name' => 'edit own commerce_order entities',
-    'roles' => array(
-      'Awaiting validation' => 'Awaiting validation',
-      'authenticated user' => 'authenticated user',
-    ),
+    'roles' => array(),
     'module' => 'commerce_order',
   );
 
