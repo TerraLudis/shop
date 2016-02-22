@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * Implements hook_commerce_line_item_type_info().
+ */
+function paypal_fees_commerce_line_item_type_info() {
+  return [
+    'paypal_fees' => [
+      'type' => 'paypal_fees',
+      'name' => t('Paypal fees'),
+      'product' => FALSE,
+      'base' => 'paypal_fees_line_item',
+    ],
+  ];
+}
+
+/**
+ * Returns a title for this line item.
+ */
+function paypal_fees_line_item_title($line_item) {
+  return t('Paypal fees');
+}
+
+/**
+ * Implements hook_commerce_order_presave().
+ */
+function paypal_fees_commerce_order_presave($order) {
+  $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+  // Find out if our order already has an example_2 line item.
+  $found = FALSE;
+  foreach ($order_wrapper->commerce_line_items as $delta => $line_item_wrapper) {
+    if ($line_item_wrapper->value()->type == 'paypal_fees') {
+      $line_item = $line_item_wrapper->value();
+      $found = TRUE;
+      break;
+    }
+  }
+
+  if (!$found && empty($order->order_id)) {
+    return;
+  }
+
+  if (!$found) {
+    $line_item = entity_create('commerce_line_item', array(
+      'type' => 'paypal_fees',
+      'order_id' => $order->order_id,
+      'quantity' => 1,
+    ));
+  }
+
+  $types = commerce_line_item_types();
+  unset($types['paypal_fees']);
+  $order_total = commerce_line_items_total($order_wrapper->commerce_line_items, array_keys($types));
+  $line_item->commerce_unit_price = [
+    LANGUAGE_NONE => [
+      '0' => [
+        'amount' => _paypal_fee_calculate($order_total['amount']),
+        'currency_code' => $order_total['currency_code'],
+      ],
+    ],
+  ];
+
+  $line_item_wrapper = entity_metadata_wrapper('commerce_line_item', $line_item);
+  if (!is_null($line_item_wrapper->commerce_unit_price->value())) {
+    // Add the base price to the components array.
+    if (!commerce_price_component_load($line_item_wrapper->commerce_unit_price->value(), 'paypal_fees')) {
+      $line_item_wrapper->commerce_unit_price->data = commerce_price_component_add(
+        $line_item_wrapper->commerce_unit_price->value(),
+        'paypal_fees',
+        $line_item_wrapper->commerce_unit_price->value(),
+        FALSE,
+        FALSE
+      );
+    }
+  }
+
+  commerce_line_item_save($line_item);
+
+  if (!$found) {
+    $order->commerce_line_items[LANGUAGE_NONE][] = ['line_item_id' => $line_item->line_item_id];
+  }
+}
+
+/**
+ * @param $amount
+ * @return float
+ */
+function _paypal_fee_calculate($amount) {
+  return ceil(($amount + 0.25) / (1 - 0.034) - $amount);
+}
+
+/**
+ * Implements hook_commerce_price_component_type_info().
+ */
+function paypal_fees_commerce_price_component_type_info() {
+  $components = array();
+
+  // Define a generic shipping price component type.
+  $components['paypal_fees'] = array(
+    'title' => t('Paypal fees'),
+    'weight' => 999,
+  );
+
+  return $components;
+}

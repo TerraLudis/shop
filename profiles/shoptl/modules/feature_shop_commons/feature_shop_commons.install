@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Feature Shop Commons installation.
+ */
+
+/**
+ * Enable Paypal Fees module.
+ */
+function feature_shop_commons_update_7001(&$sandbox) {
+  module_enable(['paypal_fees']);
+}

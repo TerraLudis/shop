@@ -1,0 +1,4 @@
+name = "Paypal Fees"
+description = "Add a line item containing the calculated Paypal fees on the order"
+package = Commerce
+core = 7.x
