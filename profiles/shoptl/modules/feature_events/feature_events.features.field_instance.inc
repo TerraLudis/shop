@@ -321,6 +321,44 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_managers'.
+  $field_instances['node-event-field_managers'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Les emails renseignés ici recevront un récapitulatif quotidien de l\'activité de l\'événement.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_managers',
+    'label' => 'Responsables',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'email',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'email_textfield',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_tickets'.
   $field_instances['node-event-field_tickets'] = array(
     'bundle' => 'event',
@@ -435,7 +473,9 @@ function feature_events_field_default_field_instances() {
   t('Body');
   t('Dates de l\'événement');
   t('Image');
+  t('Les emails renseignés ici recevront un récapitulatif quotidien de l\'activité de l\'événement.');
   t('Price');
+  t('Responsables');
   t('Stock');
   t('Ticket');
   t('Tickets');

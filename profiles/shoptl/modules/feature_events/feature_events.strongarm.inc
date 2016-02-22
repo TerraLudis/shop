@@ -172,6 +172,12 @@ function feature_events_strongarm() {
         'title' => array(
           'weight' => '0',
         ),
+        'path' => array(
+          'weight' => '7',
+        ),
+        'redirect' => array(
+          'weight' => '6',
+        ),
       ),
       'display' => array(
         'product:sku' => array(
