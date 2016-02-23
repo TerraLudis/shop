@@ -10,3 +10,20 @@
 function feature_shop_commons_update_7001(&$sandbox) {
   module_enable(['paypal_fees']);
 }
+
+/**
+ * Update all pending orders.
+ */
+function feature_shop_commons_update_7002(&$sandbox) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'commerce_order')
+    ->propertyCondition('status', 'pending');
+  $result = $query->execute();
+  if (empty($result['commerce_order'])) {
+    return;
+  }
+  $orders = commerce_order_load_multiple(array_keys($result['commerce_order']));
+  foreach ($orders as $order) {
+    commerce_order_status_update($order, 'completed', FALSE, TRUE, 'État de la commande mis à jour par ' . __FUNCTION__);
+  }
+}

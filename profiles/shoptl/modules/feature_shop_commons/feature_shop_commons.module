@@ -167,4 +167,19 @@ function feature_shop_commons_default_rules_configuration_alter(&$configs) {
     }');
     $configs['commerce_payment_paypal_wps']->active = TRUE;
   }
+  if (!empty($configs['commerce_checkout_order_status_update'])) {
+    $configs['commerce_checkout_order_status_update'] = rules_import('{ "commerce_checkout_order_status_update" : {
+        "LABEL" : "Mettre \u00e0 jour le statut de la commande lors de la finalisation du paiement",
+        "PLUGIN" : "reaction rule",
+        "OWNER" : "rules",
+        "TAGS" : [ "Commerce Checkout" ],
+        "REQUIRES" : [ "commerce_order", "commerce_checkout" ],
+        "ON" : { "commerce_checkout_complete" : [] },
+        "DO" : [
+          { "commerce_order_update_state" : { "commerce_order" : [ "commerce-order" ], "order_state" : "completed" } }
+        ]
+      }
+    }');
+    $configs['commerce_checkout_order_status_update']->active = TRUE;
+  }
 }
