@@ -5,3 +5,107 @@
  */
 
 include_once 'feature_events.features.inc';
+
+/**
+ * Implements hook_cron().
+ */
+function feature_events_cron() {
+  $lastrun = variable_get('feature_events_cron_last', 0);
+  if ($lastrun > REQUEST_TIME - 23*60*60) {
+    return;
+  }
+
+  variable_set('feature_events_cron_last', REQUEST_TIME);
+
+  // Load published events.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'event')
+    ->propertyCondition('status', TRUE);
+  $results = $query->execute();
+  if (empty($results['node'])) {
+    return;
+  }
+  $events = node_load_multiple(array_keys($results['node']));
+
+  // Load new orders.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'commerce_order')
+    ->propertyCondition('state', 'completed')
+    ->propertyCondition('changed', $lastrun, '>')
+    ->propertyOrderBy('changed', 'ASC');
+  $results = $query->execute();
+  $orders = [];
+  if (!empty($results['commerce_order'])) {
+    $orders = commerce_order_load_multiple(array_keys($results['commerce_order']));
+  }
+
+  // Prepare data.
+  $data = [];
+  $tickets = [];
+  $wrapper = entity_metadata_wrapper('node');
+  foreach ($events as $event) {
+    $wrapper->set($event);
+    $data[$event->nid] = [
+      'title' => $event->title,
+      'emails' => [],
+      'orders' => [],
+    ];
+    foreach ($wrapper->field_managers as $manager) {
+      $data[$event->nid]['emails'][] = $manager->value()['email'];
+    }
+    foreach ($wrapper->field_tickets as $ticket) {
+      $tickets[$ticket->field_ticket->raw()] = [
+        'title' => $ticket->value()->title,
+        'event' => $event->nid,
+      ];
+    }
+  }
+
+  $wrapper = entity_metadata_wrapper('commerce_order');
+  foreach ($orders as $order) {
+    $wrapper->set($order);
+    foreach ($wrapper->commerce_line_items as $delta => $line_item_wrapper) {
+      if ($line_item_wrapper->value()->type == 'product' && $line_item_wrapper->commerce_product->value()->type == 'ticket') {
+        $cpid = $line_item_wrapper->commerce_product->raw();
+        if (!empty($tickets[$cpid])) {
+          if (empty($data[$tickets[$cpid]['event']]['orders'][$order->order_id])) {
+            $data[$tickets[$cpid]['event']]['orders'][$order->order_id] = [
+              'client' => $wrapper->commerce_customer_billing->commerce_customer_address->value()['name_line'],
+              'email' => $wrapper->value()->mail,
+              'products' => [],
+            ];
+          }
+          $data[$tickets[$cpid]['event']]['orders'][$order->order_id]['products'][] = round($line_item_wrapper->value()->quantity) . 'x ' . $tickets[$cpid]['title'];
+        }
+      }
+    }
+  }
+
+  // Send mails.
+  foreach ($data as $order_id => $report) {
+    if (!empty($report['emails'])) {
+      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report, NULL, FALSE);
+//      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report);
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function feature_events_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'order_report':
+      $message['subject'] = '[TLShop] Récapitulatif de commandes : ' . $params['title'];
+      if (!empty($params['orders'])) {
+        foreach ($params['orders'] as $data) {
+          $message['body'][] = $data['client'] . ' (' . $data['email'] . ') :' . "\n. " . implode("\n. ", $data['products']);
+        }
+      }
+      else {
+        $message['body'][] = 'Aucune commande pour cet événement aujourd\'hui.';
+      }
+      break;
+  }
+}
