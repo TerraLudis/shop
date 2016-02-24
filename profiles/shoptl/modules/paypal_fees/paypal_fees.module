@@ -87,7 +87,8 @@ function paypal_fees_commerce_order_presave($order) {
  * @return float
  */
 function _paypal_fee_calculate($amount) {
-  return ceil(($amount + 0.25) / (1 - 0.034) - $amount);
+  // Amounts are given in cents. "25" = "0.25-".
+  return ceil(($amount + 25) / (1 - 0.034) - $amount);
 }
 
 /**
