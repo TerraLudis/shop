@@ -52,7 +52,7 @@ function feature_events_cron() {
       'orders' => [],
     ];
     foreach ($wrapper->field_managers as $manager) {
-      $data[$event->nid]['emails'][] = $manager->value()['email'];
+      $data[$event->nid]['emails'][] = $manager->value();
     }
     foreach ($wrapper->field_tickets as $ticket) {
       $tickets[$ticket->field_ticket->raw()] = [
@@ -76,17 +76,20 @@ function feature_events_cron() {
               'products' => [],
             ];
           }
-          $data[$tickets[$cpid]['event']]['orders'][$order->order_id]['products'][] = round($line_item_wrapper->value()->quantity) . 'x ' . $tickets[$cpid]['title'];
+          $str = format_string('  - @countx @product', [
+            '@count' => round($line_item_wrapper->value()->quantity),
+            '@product' => $tickets[$cpid]['title'],
+          ]);
+          $data[$tickets[$cpid]['event']]['orders'][$order->order_id]['products'][] = $str;
         }
       }
     }
   }
 
   // Send mails.
-  foreach ($data as $order_id => $report) {
+  foreach ($data as $report) {
     if (!empty($report['emails'])) {
-      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report, NULL, FALSE);
-//      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report);
+      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report);
     }
   }
 }
@@ -99,8 +102,13 @@ function feature_events_mail($key, &$message, $params) {
     case 'order_report':
       $message['subject'] = '[TLShop] Récapitulatif de commandes : ' . $params['title'];
       if (!empty($params['orders'])) {
-        foreach ($params['orders'] as $data) {
-          $message['body'][] = $data['client'] . ' (' . $data['email'] . ') :' . "\n. " . implode("\n. ", $data['products']);
+        foreach ($params['orders'] as $order_id => $data) {
+          $message['body'][] = format_string('@client (@email) [commande @order_id] :' . "\n" . '@products', [
+            '@client' => $data['client'],
+            '@email' => $data['email'],
+            '@order_id' => $order_id,
+            '@products' => implode("\n. ", $data['products'])
+          ]);
         }
       }
       else {
