@@ -89,7 +89,7 @@ function feature_events_cron() {
   // Send mails.
   foreach ($data as $report) {
     if (!empty($report['emails'])) {
-      drupal_mail('feature_events', 'order_report', $report['emails'], $GLOBALS['language']->language, $report);
+      drupal_mail('feature_events', 'order_report', implode(', ', $report['emails']), $GLOBALS['language']->language, $report);
     }
   }
 }
