@@ -1,6 +1,11 @@
 
 .node-ticket {
+  padding: 20px 10px;
+
   h2 {
+    font-size: 1.25em;
+    margin-top: 0;
+
     a {
       @include link-colors($text, $text, $text, $text, $text);
       cursor: text;

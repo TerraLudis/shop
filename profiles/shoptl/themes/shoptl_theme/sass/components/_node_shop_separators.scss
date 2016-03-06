@@ -1,0 +1,14 @@
+
+.node-shop-separator {
+  h2 {
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 0;
+    margin-top: 2em;
+
+    a {
+      @include link-colors($text, $text, $text, $text, $text);
+      cursor: text;
+      text-decoration: none;
+    }
+  }
+}

@@ -74,6 +74,7 @@ function feature_events_field_default_field_bases() {
           'type' => 'property',
         ),
         'target_bundles' => array(
+          'shop_separator' => 'shop_separator',
           'ticket' => 'ticket',
         ),
       ),

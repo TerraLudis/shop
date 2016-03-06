@@ -19,11 +19,20 @@
   @include clearfix;
   clear: both;
 
-  & > .field-items > .field-item {
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 0 15px 30px 0;
-    vertical-align: top;
-    width: 25%;
+  & > .field-items {
+    & > .node-ticket {
+      box-sizing: border-box;
+      float: left;
+      vertical-align: top;
+      width: 25%;
+
+      &:hover {
+        background: #efefef;
+      }
+    }
+    & > .node-ticket:nth-child(4n+1),
+    & > .node-shop-separator {
+      clear: left;
+    }
   }
 }
