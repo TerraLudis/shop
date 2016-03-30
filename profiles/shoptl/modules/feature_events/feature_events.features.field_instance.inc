@@ -409,6 +409,42 @@ function feature_events_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-shop_separator-field_invisible'.
+  $field_instances['node-shop_separator-field_invisible'] = array(
+    'bundle' => 'shop_separator',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_invisible',
+    'label' => 'Invisible',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-ticket-field_ticket'.
   $field_instances['node-ticket-field_ticket'] = array(
     'bundle' => 'ticket',
@@ -473,6 +509,7 @@ function feature_events_field_default_field_instances() {
   t('Body');
   t('Dates de l\'événement');
   t('Image');
+  t('Invisible');
   t('Les emails renseignés ici recevront un récapitulatif quotidien de l\'activité de l\'événement.');
   t('Price');
   t('Responsables');

@@ -7,6 +7,16 @@
 include_once 'feature_events.features.inc';
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function feature_events_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  if ($node->type == 'shop_separator' && !empty($node->field_invisible[LANGUAGE_NONE][0]['value'])) {
+    $variables['classes_array'][] = 'separator-invisible';
+  }
+}
+
+/**
  * Implements hook_cron().
  */
 function feature_events_cron() {

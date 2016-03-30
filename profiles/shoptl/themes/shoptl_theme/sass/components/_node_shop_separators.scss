@@ -12,4 +12,16 @@
       text-decoration: none;
     }
   }
+
+  &.separator-invisible {
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+
+    h2 {
+      display: none;
+    }
+  }
 }
