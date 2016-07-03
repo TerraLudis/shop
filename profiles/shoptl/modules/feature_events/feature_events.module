@@ -17,6 +17,31 @@ function feature_events_preprocess_node(&$variables) {
 }
 
 /**
+ * Implements hook_entity_load().
+ *
+ * Preload commerce products ids into event nodes.
+ */
+function feature_events_entity_load($entities, $type) {
+  if ($type == 'node') {
+    $wrapper = entity_metadata_wrapper('node');
+
+    foreach ($entities as $entity) {
+      if ($entity->type == 'event') {
+        $wrapper->set($entity);
+
+        $entity->event_products = [];
+        foreach ($wrapper->field_tickets->value() as $ticket) {
+          if ($ticket->type == 'ticket') {
+            $wrapper->set($ticket);
+            $entity->event_products[$wrapper->field_ticket->raw()] = $wrapper->title->value();
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_cron().
  */
 function feature_events_cron() {
@@ -64,9 +89,9 @@ function feature_events_cron() {
     foreach ($wrapper->field_managers as $manager) {
       $data[$event->nid]['emails'][] = $manager->value();
     }
-    foreach ($wrapper->field_tickets as $ticket) {
-      $tickets[$ticket->field_ticket->raw()] = [
-        'title' => $ticket->value()->title,
+    foreach ($event->event_products as $product_id => $product_title) {
+      $tickets[$product_id] = [
+        'title' => $product_title,
         'event' => $event->nid,
       ];
     }
@@ -126,4 +151,88 @@ function feature_events_mail($key, &$message, $params) {
       }
       break;
   }
+}
+
+// -----------------------------------------------------------------------------
+// CSV export.
+
+/**
+ * Implements hook_menu().
+ */
+function feature_events_menu() {
+  return [
+    'admin/commerce/orders/tickets/%node/export' => [
+      'page callback' => '_feature_events_csv_export',
+      'page arguments' => [4],
+      'access arguments' => ['administer commerce_order entities'],
+    ],
+  ];
+}
+
+/**
+ * admin/commerce/orders/tickets/%node/export callback.
+ *
+ * @param int $event_id
+ *   The event ID
+ */
+function _feature_events_csv_export($event) {
+  // Prepare CSV headers.
+  $headers = [
+    'Commande', 'Date', 'Client',
+  ];
+  $product_index = [];
+  $i = count($headers);
+  foreach ($event->event_products as $product_id => $product_title) {
+    $headers[$i] = $product_title;
+    $product_index[$product_id] = $i;
+    $i++;
+  }
+
+  // Get all commerce_line_items selling that products.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'commerce_line_item')
+    ->entityCondition('bundle', 'product')
+    ->fieldCondition('commerce_product', 'product_id', array_keys($event->event_products))
+    ->propertyOrderBy('order_id');
+  $result = $query->execute();
+  $line_items = commerce_line_item_load_multiple(array_keys($result['commerce_line_item']));
+
+  // Prepare CSV rows.
+  $rows = [];
+  $order_index = [];
+  $line_item_wrapper = entity_metadata_wrapper('commerce_line_item');
+  foreach ($line_items as $line_item) {
+    $line_item_wrapper->set($line_item);
+    $order = $line_item_wrapper->order->value();
+    if ($order->status == 'completed') {
+      $order_id = $order->order_id;
+      // If we never handled this order before, prepare the row.
+      if (!isset($order_index[$order_id])) {
+        $order_index[$order_id] = count($rows);
+        $rows[$order_index[$order_id]][] = $order_id;
+        $rows[$order_index[$order_id]][] = format_date($line_item_wrapper->order->created->value(), 'custom', 'd/m/Y - H:i');
+        $rows[$order_index[$order_id]][] = $line_item_wrapper->order->commerce_customer_billing->commerce_customer_address->value()['name_line'];
+        foreach ($event->event_products as $product_id => $product_title) {
+          $rows[$order_index[$order_id]][] = 0;
+        }
+      }
+      $rows[$order_index[$order_id]][$product_index[$line_item_wrapper->commerce_product->raw()]] = round($line_item_wrapper->value()->quantity);
+    }
+  }
+
+  header('Content-Description: File Transfer');
+  header('Content-Type: application/octet-stream');
+  header('Content-Disposition: attachment; filename=' . transliteration_clean_filename($event->title) . '.csv');
+  header('Expires: 0');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+
+  $f = fopen('php://output', 'w');
+  fputcsv($f, $headers);
+  foreach ($rows as $row) {
+    fputcsv($f, $row);
+  }
+  fclose($f);
+
+  drupal_exit();
 }
