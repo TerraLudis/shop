@@ -389,7 +389,15 @@ function commerce_stock_reserve($line_item, $release = FALSE, $restore_to_produc
 
   // Get the product from the line item.
   $line_item_wrapper = entity_metadata_wrapper('commerce_line_item', $line_item);
-  $product = $line_item_wrapper->commerce_product->value();
+
+  // The product entity is loaded fresh from the database (bypassing the static
+  // cache) to avoid a race condition with the commerce_product_pricing module.
+  // See: https://www.drupal.org/node/2732251
+  $products = entity_load('commerce_product', array($line_item_wrapper->commerce_product->getIdentifier()), array(), TRUE);
+  $product = reset($products);
+  if (!$product) {
+    return FALSE;
+  }
 
   // Check that the product is enabled for stock control.
   if (!commerce_stock_reserve_product_is_enabled($product)) {
@@ -404,7 +412,7 @@ function commerce_stock_reserve($line_item, $release = FALSE, $restore_to_produc
   }
 
   // Get the current stock level.
-  $current_stock = commerce_stock_reserve_get_product_stock($product);
+  $current_stock = commerce_stock_reserve_get_product_stock($product, TRUE);
 
   // Calculate how much stock should be reserved. If releasing stock, then this
   // will be a negative value.
