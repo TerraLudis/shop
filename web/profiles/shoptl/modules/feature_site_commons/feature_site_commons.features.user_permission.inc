@@ -15,6 +15,7 @@ function feature_site_commons_user_default_permissions() {
     'name' => 'access administration menu',
     'roles' => array(
       'Orders Manager' => 'Orders Manager',
+      'Shop Admin' => 'Shop Admin',
     ),
     'module' => 'admin_menu',
   );
@@ -24,6 +25,7 @@ function feature_site_commons_user_default_permissions() {
     'name' => 'access administration pages',
     'roles' => array(
       'Orders Manager' => 'Orders Manager',
+      'Shop Admin' => 'Shop Admin',
     ),
     'module' => 'system',
   );
@@ -49,7 +51,9 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'access content overview'.
   $permissions['access content overview'] = array(
     'name' => 'access content overview',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
@@ -133,7 +137,9 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'administer nodes'.
   $permissions['administer nodes'] = array(
     'name' => 'administer nodes',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
@@ -203,7 +209,9 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'delete revisions'.
   $permissions['delete revisions'] = array(
     'name' => 'delete revisions',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
@@ -245,21 +253,27 @@ function feature_site_commons_user_default_permissions() {
   // Exported permission: 'revert revisions'.
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'view own unpublished content'.
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'view revisions'.
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
@@ -268,6 +282,7 @@ function feature_site_commons_user_default_permissions() {
     'name' => 'view the administration theme',
     'roles' => array(
       'Orders Manager' => 'Orders Manager',
+      'Shop Admin' => 'Shop Admin',
     ),
     'module' => 'system',
   );

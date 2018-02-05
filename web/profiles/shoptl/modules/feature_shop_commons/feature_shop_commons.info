@@ -93,6 +93,7 @@ features[user_permission][] = view own commerce_order entities of bundle commerc
 features[user_permission][] = view own commerce_product entities
 features[user_permission][] = view payments
 features[user_role][] = Orders Manager
+features[user_role][] = Shop Admin
 features[variable][] = commerce_checkout_redirect_anonymous
 features[variable][] = commerce_checkout_redirect_anonymous_as_login_option
 features[variable][] = commerce_checkout_redirect_message

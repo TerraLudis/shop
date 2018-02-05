@@ -20,28 +20,36 @@ function feature_events_user_default_permissions() {
   // Exported permission: 'create event content'.
   $permissions['create event content'] = array(
     'name' => 'create event content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create ticket content'.
   $permissions['create ticket content'] = array(
     'name' => 'create ticket content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any event content'.
   $permissions['delete any event content'] = array(
     'name' => 'delete any event content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any ticket content'.
   $permissions['delete any ticket content'] = array(
     'name' => 'delete any ticket content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
@@ -69,14 +77,18 @@ function feature_events_user_default_permissions() {
   // Exported permission: 'edit any event content'.
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any ticket content'.
   $permissions['edit any ticket content'] = array(
     'name' => 'edit any ticket content',
-    'roles' => array(),
+    'roles' => array(
+      'Shop Admin' => 'Shop Admin',
+    ),
     'module' => 'node',
   );
 

@@ -17,5 +17,12 @@ function feature_shop_commons_user_default_roles() {
     'machine_name' => 'orders_manager',
   );
 
+  // Exported role: Shop Admin.
+  $roles['Shop Admin'] = array(
+    'name' => 'Shop Admin',
+    'weight' => 4,
+    'machine_name' => 'shop_admin',
+  );
+
   return $roles;
 }
