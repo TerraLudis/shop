@@ -1,5 +1,15 @@
 {
     "require": {
         "drush/drush": "~8.0"
+    },
+    "extra": {
+        "installer-paths": {
+            "web": ["type:drupal-core"],
+            "web/sites/all/libraries/{$name}": ["type:drupal-library"],
+            "web/sites/all/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/sites/all/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        }
     }
 }
