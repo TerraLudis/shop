@@ -92,6 +92,13 @@ function feature_site_commons_user_default_permissions() {
     'module' => 'block',
   );
 
+  // Exported permission: 'administer ckeditor'.
+  $permissions['administer ckeditor'] = array(
+    'name' => 'administer ckeditor',
+    'roles' => array(),
+    'module' => 'ckeditor',
+  );
+
   // Exported permission: 'administer content types'.
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
@@ -204,6 +211,13 @@ function feature_site_commons_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(),
     'module' => 'path',
+  );
+
+  // Exported permission: 'customize ckeditor'.
+  $permissions['customize ckeditor'] = array(
+    'name' => 'customize ckeditor',
+    'roles' => array(),
+    'module' => 'ckeditor',
   );
 
   // Exported permission: 'delete revisions'.

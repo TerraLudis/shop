@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Enable CKEditor module.
+ */
+function feature_site_commons_update_7001() {
+  module_enable(['ckeditor']);
+}
