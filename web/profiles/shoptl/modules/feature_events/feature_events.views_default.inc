@@ -244,6 +244,7 @@ function feature_events_views_default_views() {
   $handler->display->display_options['fields']['order_id']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['order_id']['alter']['text'] = '[commande [order_id]]';
   $handler->display->display_options['fields']['order_id']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['order_id']['link_to_order'] = 'admin';
   /* Sort criterion: Commerce Product: SKU */
   $handler->display->display_options['sorts']['sku']['id'] = 'sku';
   $handler->display->display_options['sorts']['sku']['table'] = 'commerce_product';

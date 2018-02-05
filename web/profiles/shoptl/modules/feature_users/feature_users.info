@@ -9,6 +9,7 @@ dependencies[] = logintoboggan
 dependencies[] = role_delegation
 dependencies[] = role_export
 dependencies[] = strongarm
+dependencies[] = text
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = field_name
