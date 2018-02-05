@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Enable Role Delegation module.
+ */
+function feature_users_update_7001() {
+  module_enable(['role_delegation']);
+}

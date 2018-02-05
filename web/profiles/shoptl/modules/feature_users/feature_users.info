@@ -6,6 +6,7 @@ dependencies[] = auto_username
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = logintoboggan
+dependencies[] = role_delegation
 dependencies[] = role_export
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
