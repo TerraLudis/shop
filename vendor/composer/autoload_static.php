@@ -109,13 +109,6 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
     );
 
     public static $prefixesPsr0 = array (
-        'p' => 
-        array (
-            'phpDocumentor' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            ),
-        ),
         'J' => 
         array (
             'JakubOnderka\\PhpConsoleHighlighter' => 
@@ -205,9 +198,14 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
         'Consolidation\\OutputFormatters\\Exception\\UnknownFormatException' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Exception/UnknownFormatException.php',
         'Consolidation\\OutputFormatters\\FormatterManager' => __DIR__ . '/..' . '/consolidation/output-formatters/src/FormatterManager.php',
         'Consolidation\\OutputFormatters\\Formatters\\CsvFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/CsvFormatter.php',
+        'Consolidation\\OutputFormatters\\Formatters\\FormatterAwareInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/FormatterAwareInterface.php',
+        'Consolidation\\OutputFormatters\\Formatters\\FormatterAwareTrait' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/FormatterAwareTrait.php',
         'Consolidation\\OutputFormatters\\Formatters\\FormatterInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/FormatterInterface.php',
+        'Consolidation\\OutputFormatters\\Formatters\\HumanReadableFormat' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/HumanReadableFormat.php',
         'Consolidation\\OutputFormatters\\Formatters\\JsonFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/JsonFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\ListFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/ListFormatter.php',
+        'Consolidation\\OutputFormatters\\Formatters\\MetadataFormatterInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/MetadataFormatterInterface.php',
+        'Consolidation\\OutputFormatters\\Formatters\\MetadataFormatterTrait' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/MetadataFormatterTrait.php',
         'Consolidation\\OutputFormatters\\Formatters\\PrintRFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/PrintRFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\RenderDataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/RenderDataInterface.php',
         'Consolidation\\OutputFormatters\\Formatters\\RenderTableDataTrait' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/RenderTableDataTrait.php',
@@ -216,6 +214,7 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
         'Consolidation\\OutputFormatters\\Formatters\\StringFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/StringFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\TableFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/TableFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\TsvFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/TsvFormatter.php',
+        'Consolidation\\OutputFormatters\\Formatters\\VarDumpFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/VarDumpFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\VarExportFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/VarExportFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\XmlFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/XmlFormatter.php',
         'Consolidation\\OutputFormatters\\Formatters\\YamlFormatter' => __DIR__ . '/..' . '/consolidation/output-formatters/src/Formatters/YamlFormatter.php',
@@ -227,6 +226,10 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
         'Consolidation\\OutputFormatters\\StructuredData\\HelpDocument' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/HelpDocument.php',
         'Consolidation\\OutputFormatters\\StructuredData\\ListDataFromKeys' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/ListDataFromKeys.php',
         'Consolidation\\OutputFormatters\\StructuredData\\ListDataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/ListDataInterface.php',
+        'Consolidation\\OutputFormatters\\StructuredData\\MetadataHolderInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/MetadataHolderInterface.php',
+        'Consolidation\\OutputFormatters\\StructuredData\\MetadataHolderTrait' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/MetadataHolderTrait.php',
+        'Consolidation\\OutputFormatters\\StructuredData\\MetadataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/MetadataInterface.php',
+        'Consolidation\\OutputFormatters\\StructuredData\\NumericCellRenderer' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/NumericCellRenderer.php',
         'Consolidation\\OutputFormatters\\StructuredData\\OriginalDataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/OriginalDataInterface.php',
         'Consolidation\\OutputFormatters\\StructuredData\\PropertyList' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/PropertyList.php',
         'Consolidation\\OutputFormatters\\StructuredData\\RenderCellCollectionInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/RenderCellCollectionInterface.php',
@@ -234,6 +237,7 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
         'Consolidation\\OutputFormatters\\StructuredData\\RenderCellInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/RenderCellInterface.php',
         'Consolidation\\OutputFormatters\\StructuredData\\RestructureInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/RestructureInterface.php',
         'Consolidation\\OutputFormatters\\StructuredData\\RowsOfFields' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/RowsOfFields.php',
+        'Consolidation\\OutputFormatters\\StructuredData\\RowsOfFieldsWithMetadata' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/RowsOfFieldsWithMetadata.php',
         'Consolidation\\OutputFormatters\\StructuredData\\TableDataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/TableDataInterface.php',
         'Consolidation\\OutputFormatters\\StructuredData\\Xml\\DomDataInterface' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/Xml/DomDataInterface.php',
         'Consolidation\\OutputFormatters\\StructuredData\\Xml\\XmlSchema' => __DIR__ . '/..' . '/consolidation/output-formatters/src/StructuredData/Xml/XmlSchema.php',
@@ -855,31 +859,6 @@ class ComposerStaticInit89231d468cde69b48e0f50ed8a242471
         'Webmozart\\PathUtil\\Path' => __DIR__ . '/..' . '/webmozart/path-util/src/Path.php',
         'Webmozart\\PathUtil\\Url' => __DIR__ . '/..' . '/webmozart/path-util/src/Url.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
-        'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Context' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Context.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Description' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Description.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Location' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Location.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Serializer' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Serializer.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\AuthorTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/AuthorTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\CoversTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/CoversTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\DeprecatedTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/DeprecatedTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\ExampleTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ExampleTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\LinkTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/LinkTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\MethodTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/MethodTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\ParamTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ParamTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\PropertyReadTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyReadTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\PropertyTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\PropertyWriteTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyWriteTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\ReturnTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ReturnTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\SeeTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SeeTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\SinceTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SinceTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\SourceTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SourceTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\ThrowsTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ThrowsTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\UsesTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/UsesTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\VarTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VarTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Tag\\VersionTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VersionTag.php',
-        'phpDocumentor\\Reflection\\DocBlock\\Type\\Collection' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Type/Collection.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
